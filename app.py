@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, make_response, json
 from flask_cors import CORS
 from pusher import pusher
 import simplejson
+from config import pusher_config
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -9,10 +10,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 # configure pusher object
 pusher = pusher.Pusher(
-app_id='574024',
-key='ed46e4b621ddf836602f',
-secret='14cf8900bf3303333c2b',
-cluster='us2',
+app_id=pusher_config['app_id'],
+key=pusher_config['key'],
+secret=pusher_config['secret'],
+cluster=pusher_config['cluster'],
 ssl=True)
 
 @app.route('/')
